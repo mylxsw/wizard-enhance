@@ -1,0 +1,29 @@
+package: "model"
+
+meta:
+  table_prefix: wz_
+
+models:
+  - name: project
+    definition:
+      soft_delete: true
+      table_name: projects
+      fields:
+        - name: id
+          type: int64
+        - name: name
+          type: string
+        - name: description
+          type: string
+        - name: visibility
+          type: int8
+        - name: user_id
+          type: int
+        - name: sort_level
+          type: int
+        - name: catalog_id
+          type: int
+        - name: catalog_fold_style
+          type: int8
+        - name: catalog_sort_style
+          type: int8

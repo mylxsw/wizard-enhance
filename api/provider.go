@@ -1,6 +1,7 @@
 package api
 
 import (
+	"errors"
 	"net/http"
 	"runtime/debug"
 
@@ -23,6 +24,7 @@ func (s Provider) Aggregates() []infra.Provider {
 			web.SetRouteHandlerOption(s.routes),
 			web.SetMuxRouteHandlerOption(s.muxRoutes),
 			web.SetExceptionHandlerOption(s.exceptionHandler),
+			web.SetIgnoreLastSlashOption(true),
 		),
 	}
 }
@@ -45,12 +47,27 @@ func (s Provider) muxRoutes(cc infra.Resolver, router *mux.Router) {
 }
 
 func (s Provider) routes(cc infra.Resolver, router web.Router, mw web.RequestMiddleware) {
+	conf := config.Get(cc)
+
 	mws := make([]web.HandlerDecorator, 0)
 	mws = append(mws, mw.AccessLog(log.Module("api")), mw.CORS("*"))
+	if conf.APISecret != "" {
+		mws = append(mws, mw.AuthHandler(func(ctx web.Context, typ string, credential string) error {
+			if typ != "Bearer" {
+				return errors.New("不支持该鉴权方式")
+			}
+
+			if credential != conf.APISecret {
+				return errors.New("API Secret 不合法")
+			}
+
+			return nil
+		}))
+	}
 
 	router.WithMiddleware(mws...).Controllers(
 		"/api",
-		controllers(cc)...,
+		controllers(cc, conf)...,
 	)
 }
 

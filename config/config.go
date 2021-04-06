@@ -7,9 +7,13 @@ import (
 )
 
 type Config struct {
-	Listen  string `json:"listen"`
-	Debug   bool   `json:"debug"`
-	LogPath string `json:"log_path"`
+	Listen    string `json:"listen"`
+	Debug     bool   `json:"debug"`
+	LogPath   string `json:"log_path"`
+	APISecret string `json:"-"`
+	Version   string `json:"version"`
+	GitCommit string `json:"git_commit"`
+	DBConnStr string `json:"-"`
 }
 
 func (conf *Config) Serialize() string {
