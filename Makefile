@@ -1,0 +1,12 @@
+Version := $(shell date "+%Y%m%d%H%M")
+GitCommit := $(shell git rev-parse HEAD)
+DIR := $(shell pwd)
+LDFLAGS := -s -w -X main.Version=$(Version) -X main.GitCommit=$(GitCommit)
+
+.PHONY: build
+build:
+	CGO_ENABLED=0 go build -ldflags "$(LDFLAGS)" -o bin/wizard-enhance cmd/*.go
+
+.PHONY: dist
+dist:
+	CGO_ENABLED=0 GOOS=linux go build -ldflags "$(LDFLAGS)" -o bin/wizard-enhance-linux cmd/*.go
