@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/go-redis/redis"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/mylxsw/asteria/formatter"
 	"github.com/mylxsw/asteria/level"
@@ -57,6 +58,18 @@ func main() {
 		EnvVar: "WIZARD_ENHANCE_DB_CONN",
 		Value:  "root:@tcp(127.0.0.1:3306)/wizard?parseTime=true",
 	}))
+	app.AddFlags(altsrc.NewStringFlag(cli.StringFlag{
+		Name:   "storage_path",
+		Usage:  "Wizard 文件存储目录 storage 文件夹所在目录",
+		EnvVar: "WIZARD_STORAGE_PATH",
+		Value:  "/Users/mylxsw/codes/github/wizard/public",
+	}))
+	app.AddFlags(altsrc.NewStringFlag(cli.StringFlag{
+		Name:   "gotenberg_server",
+		Usage:  "PDF 转换服务器地址",
+		EnvVar: "WIZARD_GOTENBERG_SERVER",
+		Value:  "http://localhost:3000",
+	}))
 
 	app.BeforeServerStart(func(cc container.Container) error {
 		stackWriter := writer.NewStackWriter()
@@ -90,17 +103,24 @@ func main() {
 
 	app.Singleton(func(c infra.FlagContext) *config.Config {
 		return &config.Config{
-			Version:   Version,
-			GitCommit: GitCommit,
-			Listen:    c.String("listen"),
-			Debug:     c.Bool("debug"),
-			LogPath:   c.String("log_path"),
-			APISecret: c.String("secret"),
-			DBConnStr: c.String("db_conn_str"),
+			Version:         Version,
+			GitCommit:       GitCommit,
+			Listen:          c.String("listen"),
+			Debug:           c.Bool("debug"),
+			LogPath:         c.String("log_path"),
+			APISecret:       c.String("secret"),
+			DBConnStr:       c.String("db_conn_str"),
+			GotenbergServer: c.String("gotenberg_server"),
+			StoragePath:     c.String("storage_path"),
 		}
 	})
 	app.Singleton(func(conf *config.Config) (*sql.DB, error) {
 		return sql.Open("mysql", conf.DBConnStr)
+	})
+	app.Singleton(func() *redis.Client {
+		return redis.NewClient(&redis.Options{
+			Addr: "localhost:6379",
+		})
 	})
 
 	app.BeforeServerStop(func(cc infra.Resolver) error {

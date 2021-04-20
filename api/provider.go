@@ -43,6 +43,8 @@ func (s Provider) muxRoutes(cc infra.Resolver, router *mux.Router) {
 		router.PathPrefix("/metrics").Handler(promhttp.Handler())
 		// health check
 		router.PathPrefix("/health").Handler(HealthCheck{})
+		// wizard file storage
+		router.PathPrefix("/storage").Handler(http.FileServer(http.Dir(conf.StoragePath)))
 	})
 }
 

@@ -1,0 +1,27 @@
+package: "model"
+
+meta:
+  table_prefix: wz_
+
+models:
+  - name: attachment
+    definition:
+      soft_delete: true
+      table_name: attachments
+      fields:
+        - name: id
+          type: int64
+        - name: name
+          type: string
+        - name: path
+          type: string
+        - name: user_id
+          type: int
+        - name: page_id
+          type: int
+        - name: project_id
+          type: int
+        - name: preview_path
+          type: string
+        - name: file_type
+          type: string
