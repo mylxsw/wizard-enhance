@@ -71,37 +71,37 @@ func (inst *Attachment) Staled() bool {
 		inst.original = &attachmentOriginal{}
 	}
 
-	if inst.Id != inst.original.Id || inst.Id.ValueOrZero() != inst.original.Id.ValueOrZero() || inst.Id.IsZero() != inst.original.Id.IsZero() {
+	if inst.Id != inst.original.Id {
 		return true
 	}
-	if inst.Name != inst.original.Name || inst.Name.ValueOrZero() != inst.original.Name.ValueOrZero() || inst.Name.IsZero() != inst.original.Name.IsZero() {
+	if inst.Name != inst.original.Name {
 		return true
 	}
-	if inst.Path != inst.original.Path || inst.Path.ValueOrZero() != inst.original.Path.ValueOrZero() || inst.Path.IsZero() != inst.original.Path.IsZero() {
+	if inst.Path != inst.original.Path {
 		return true
 	}
-	if inst.UserId != inst.original.UserId || inst.UserId.ValueOrZero() != inst.original.UserId.ValueOrZero() || inst.UserId.IsZero() != inst.original.UserId.IsZero() {
+	if inst.UserId != inst.original.UserId {
 		return true
 	}
-	if inst.PageId != inst.original.PageId || inst.PageId.ValueOrZero() != inst.original.PageId.ValueOrZero() || inst.PageId.IsZero() != inst.original.PageId.IsZero() {
+	if inst.PageId != inst.original.PageId {
 		return true
 	}
-	if inst.ProjectId != inst.original.ProjectId || inst.ProjectId.ValueOrZero() != inst.original.ProjectId.ValueOrZero() || inst.ProjectId.IsZero() != inst.original.ProjectId.IsZero() {
+	if inst.ProjectId != inst.original.ProjectId {
 		return true
 	}
-	if inst.PreviewPath != inst.original.PreviewPath || inst.PreviewPath.ValueOrZero() != inst.original.PreviewPath.ValueOrZero() || inst.PreviewPath.IsZero() != inst.original.PreviewPath.IsZero() {
+	if inst.PreviewPath != inst.original.PreviewPath {
 		return true
 	}
-	if inst.FileType != inst.original.FileType || inst.FileType.ValueOrZero() != inst.original.FileType.ValueOrZero() || inst.FileType.IsZero() != inst.original.FileType.IsZero() {
+	if inst.FileType != inst.original.FileType {
 		return true
 	}
-	if inst.CreatedAt != inst.original.CreatedAt || inst.CreatedAt.ValueOrZero() != inst.original.CreatedAt.ValueOrZero() || inst.CreatedAt.IsZero() != inst.original.CreatedAt.IsZero() {
+	if inst.CreatedAt != inst.original.CreatedAt {
 		return true
 	}
-	if inst.UpdatedAt != inst.original.UpdatedAt || inst.UpdatedAt.ValueOrZero() != inst.original.UpdatedAt.ValueOrZero() || inst.UpdatedAt.IsZero() != inst.original.UpdatedAt.IsZero() {
+	if inst.UpdatedAt != inst.original.UpdatedAt {
 		return true
 	}
-	if inst.DeletedAt != inst.original.DeletedAt || inst.DeletedAt.ValueOrZero() != inst.original.DeletedAt.ValueOrZero() || inst.DeletedAt.IsZero() != inst.original.DeletedAt.IsZero() {
+	if inst.DeletedAt != inst.original.DeletedAt {
 		return true
 	}
 
@@ -116,37 +116,37 @@ func (inst *Attachment) StaledKV() query.KV {
 		inst.original = &attachmentOriginal{}
 	}
 
-	if inst.Id != inst.original.Id || inst.Id.ValueOrZero() != inst.original.Id.ValueOrZero() || inst.Id.IsZero() != inst.original.Id.IsZero() {
+	if inst.Id != inst.original.Id {
 		kv["id"] = inst.Id
 	}
-	if inst.Name != inst.original.Name || inst.Name.ValueOrZero() != inst.original.Name.ValueOrZero() || inst.Name.IsZero() != inst.original.Name.IsZero() {
+	if inst.Name != inst.original.Name {
 		kv["name"] = inst.Name
 	}
-	if inst.Path != inst.original.Path || inst.Path.ValueOrZero() != inst.original.Path.ValueOrZero() || inst.Path.IsZero() != inst.original.Path.IsZero() {
+	if inst.Path != inst.original.Path {
 		kv["path"] = inst.Path
 	}
-	if inst.UserId != inst.original.UserId || inst.UserId.ValueOrZero() != inst.original.UserId.ValueOrZero() || inst.UserId.IsZero() != inst.original.UserId.IsZero() {
+	if inst.UserId != inst.original.UserId {
 		kv["user_id"] = inst.UserId
 	}
-	if inst.PageId != inst.original.PageId || inst.PageId.ValueOrZero() != inst.original.PageId.ValueOrZero() || inst.PageId.IsZero() != inst.original.PageId.IsZero() {
+	if inst.PageId != inst.original.PageId {
 		kv["page_id"] = inst.PageId
 	}
-	if inst.ProjectId != inst.original.ProjectId || inst.ProjectId.ValueOrZero() != inst.original.ProjectId.ValueOrZero() || inst.ProjectId.IsZero() != inst.original.ProjectId.IsZero() {
+	if inst.ProjectId != inst.original.ProjectId {
 		kv["project_id"] = inst.ProjectId
 	}
-	if inst.PreviewPath != inst.original.PreviewPath || inst.PreviewPath.ValueOrZero() != inst.original.PreviewPath.ValueOrZero() || inst.PreviewPath.IsZero() != inst.original.PreviewPath.IsZero() {
+	if inst.PreviewPath != inst.original.PreviewPath {
 		kv["preview_path"] = inst.PreviewPath
 	}
-	if inst.FileType != inst.original.FileType || inst.FileType.ValueOrZero() != inst.original.FileType.ValueOrZero() || inst.FileType.IsZero() != inst.original.FileType.IsZero() {
+	if inst.FileType != inst.original.FileType {
 		kv["file_type"] = inst.FileType
 	}
-	if inst.CreatedAt != inst.original.CreatedAt || inst.CreatedAt.ValueOrZero() != inst.original.CreatedAt.ValueOrZero() || inst.CreatedAt.IsZero() != inst.original.CreatedAt.IsZero() {
+	if inst.CreatedAt != inst.original.CreatedAt {
 		kv["created_at"] = inst.CreatedAt
 	}
-	if inst.UpdatedAt != inst.original.UpdatedAt || inst.UpdatedAt.ValueOrZero() != inst.original.UpdatedAt.ValueOrZero() || inst.UpdatedAt.IsZero() != inst.original.UpdatedAt.IsZero() {
+	if inst.UpdatedAt != inst.original.UpdatedAt {
 		kv["updated_at"] = inst.UpdatedAt
 	}
-	if inst.DeletedAt != inst.original.DeletedAt || inst.DeletedAt.ValueOrZero() != inst.original.DeletedAt.ValueOrZero() || inst.DeletedAt.IsZero() != inst.original.DeletedAt.IsZero() {
+	if inst.DeletedAt != inst.original.DeletedAt {
 		kv["deleted_at"] = inst.DeletedAt
 	}
 

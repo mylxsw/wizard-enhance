@@ -12,9 +12,9 @@ require (
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/iancoleman/strcase v0.0.0-20190422225806-e506e3ef7365
 	github.com/mylxsw/asteria v0.0.0-20210107083329-f465aaced0b0
-	github.com/mylxsw/coll v0.0.0-20200612040853-4275264442f9
+	github.com/mylxsw/coll v0.0.0-20210421035515-41ed10f6d829
 	github.com/mylxsw/container v0.0.0-20210320032614-4c230b312e04
-	github.com/mylxsw/eloquent v0.0.0-20210420153934-bfebc3f2802b
+	github.com/mylxsw/eloquent v0.0.0-20210421035819-c8fe69f4deab
 	github.com/mylxsw/glacier v0.0.0-20210322044907-dc4c08087409
 	github.com/mylxsw/go-toolkit v0.0.0-20191208081907-50a06279f988
 	github.com/mylxsw/go-utils v0.0.0-20210307083839-f7ab4eeb1788 // indirect
